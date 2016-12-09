@@ -11,20 +11,32 @@
           {{ string }}
         </p>
         <p style="font-size: 4rem; line-height: 5rem" v-else="!string">
-          &nbsp;
+          You ready to get shifted?
         </p>
       </div>
-      <label for="string">
-        Enter some text, but be warned: what is shifted cannot be unshifted.
-      </label><br />
-      <p>
-        <input class="form-control form-control-lg color" 
-          v-model="string"
-          id="string"
-          placeholder="You ready to get shifted?">
-      </p>
-      <button class="btn btn-success" @click="shiftLeft"><<</button>
-      <button class="btn btn-warning" @click="shiftRight">>></button>
+      <div>
+        <p>
+          <label for="string">
+            Enter some text, but be warned: what is shifted cannot be unshifted.
+          </label>
+        </p>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+          <p>
+            <input class="form-control form-control-lg color" 
+              v-model="string"
+              id="string"
+              placeholder="You ready to get shifted?">
+          </p>
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
+      <div>
+        <button class="btn btn-success" @click="shiftLeft"><<</button>
+        <button class="btn btn-warning" @click="shiftRight">>></button>
+      </div>
     </div>
   </body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.4/vue.js"></script>
