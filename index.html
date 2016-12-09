@@ -59,7 +59,7 @@
       created() {
         this.$on('bitshiftLeft', function() {
           var newStr = '';
-          for (var i = this.string.length - 1; i > 0; i--) {
+          for (var i = this.string.length - 1; i >= 0; i--) {
             if (this.string[i] !== ' ') {
               var x = this.string.charCodeAt(i);
               x = String.fromCharCode(x << 1);
@@ -72,7 +72,7 @@
         }),
         this.$on('bitshiftRight', function() {
           var newStr = '';
-          for (var i = this.string.length - 1; i > 0; i--) {
+          for (var i = this.string.length - 1; i >= 0; i--) {
             if (this.string[i] !== ' ') {
               var x = this.string.charCodeAt(i);
               x = String.fromCharCode(x >> 1);
