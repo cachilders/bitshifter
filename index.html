@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>b i t s h i f t e r</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app" class="container-fluid text-xs-center">
+      <div class="color jumbotron jumbotron-fluid">
+        <p style="font-size: 4rem; line-height: 5rem" v-if="string">
+          {{ string }}
+        </p>
+        <p style="font-size: 4rem; line-height: 5rem" v-else="!string">
+          &nbsp;
+        </p>
+      </div>
+      <label for="string">
+        Enter some text, but be warned: what is shifted cannot be unshifted.
+      </label><br />
+      <p>
+        <input class="form-control form-control-lg color" 
+          v-model="string"
+          id="string"
+          placeholder="You ready to get shifted?">
+      </p>
+      <button class="btn btn-success" @click="shiftLeft"><<</button>
+      <button class="btn btn-warning" @click="shiftRight">>></button>
+    </div>
+  </body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.4/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: function() {
+        return {
+          string: ''
+        }
+      },
+      methods: {
+        shiftLeft: function() {
+          this.$emit('bitshiftLeft');
+        },
+        shiftRight: function() {
+          this.$emit('bitshiftRight');
+        }
+      },
+      created() {
+        this.$on('bitshiftLeft', function() {
+          var newStr = '';
+          for (var i = this.string.length - 1; i > 0; i--) {
+            if (this.string[i] !== ' ') {
+              var x = this.string.charCodeAt(i);
+              x = String.fromCharCode(x << 1);
+              newStr = x + newStr;
+            } else {
+              newStr = ' ' + newStr;
+            }
+          }
+          this.string = newStr;
+        }),
+        this.$on('bitshiftRight', function() {
+          var newStr = '';
+          for (var i = this.string.length - 1; i > 0; i--) {
+            if (this.string[i] !== ' ') {
+              var x = this.string.charCodeAt(i);
+              x = String.fromCharCode(x >> 1);
+              newStr = x + newStr;
+            } else {
+              newStr = ' ' + newStr;
+            }
+          }
+          this.string = newStr;
+        })
+      }
+    });
+  </script>
+  <style scoped>
+    body {
+      font-size: .9rem;
+      text-align: left;
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      line-height: 1rem;
+    }
+    input {
+      text-align: center;
+    }
+    .color {
+      background: rgba(255,253,227, 0.2); 
+    }
+  </style>
+</html>
