@@ -8,10 +8,10 @@
   <body>
     <div id="app" class="container-fluid text-xs-center">
       <div class="color jumbotron jumbotron-fluid">
-        <p style="font-size: 4rem; line-height: 5rem" v-if="string">
+        <p style="font-size: 4rem; line-height: 5rem" v-if="string" v-cloak>
           {{ string }}
         </p>
-        <p style="font-size: 4rem; line-height: 5rem" v-else="!string">
+        <p style="font-size: 4rem; line-height: 5rem" v-else="!string" v-cloak>
           You ready to get shifted?
         </p>
       </div>
@@ -106,6 +106,9 @@
     .color {
       font-family: 'Noto Sans', sans-serif;
       background: rgba(255,253,227, 0.2); 
+    }
+    [v-cloak] {
+      display: none;
     }
   </style>
 </html>
